@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .collection-item {
+            background-color: #1f1f1f;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            transition: background-color 0.3s;
+        }
+        .collection-item:hover {
+            background-color: #2c2c2c;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .form-control {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        .form-control:focus {
+            border-color: #fff;
+            box-shadow: 0 0 5px #fff;
+        }
+        .btn {
+            background-color: #ff5722;
+            color: white;
+        }
+        .btn:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Search</h1>
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type="number" name="min_rating" step="0.1" id="min_rating" class="form-control" placeholder="Min IMDb Rating" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type="number" name="max_rating" step="0.1" id="max_rating" class="form-control" placeholder="Max IMDb Rating" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select name="genre1" class="form-control">
+                            <option value="" disabled selected>Genre 1</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="science fiction">Science Fiction</option>
+                            <option value="horror">Horror</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="action">Action</option>
+                            <option value="romance">Romance</option>
+                            <option value="drama">Drama</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="musical">Musical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select name="genre2" class="form-control">
+                            <option value="" disabled selected>Optional Genre 2</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="science fiction">Science Fiction</option>
+                            <option value="horror">Horror</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="action">Action</option>
+                            <option value="romance">Romance</option>
+                            <option value="drama">Drama</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="musical">Musical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </div>
+            </div>
+        </form>
+        
+        <h2>Results</h2>
+        <div class="collection">
+            {% if movies %}
+                {% for movie in movies %}
+                    <div class="collection-item">
+                        <h5 class="title">{{ movie.Series_Title }}</h5>
+                        <p>Rating: {{ movie.IMDB_Rating }} | Votes: {{ movie.No_of_Votes }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="collection-item">No movies found matching your criteria.</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
